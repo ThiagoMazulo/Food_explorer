@@ -1,0 +1,95 @@
+.home-screen {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  color: #fff;
+  background: var(--dark-dark-400, #000a0f);
+  overflow: hidden;
+}
+.home-conteiner {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+}
+.criar-conta {
+  display: inline-flex;
+  padding: 64px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+
+  border-radius: 16px;
+  background: var(--dark-dark-700, #001119);
+}
+h1 {
+    font-family: Roboto;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 500;
+}
+.forms {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  font-weight: 400;
+  font-size: 16px;
+  gap: 32px;
+  color: var(--light-light-400, #c4c4cc);
+}
+.input {
+  margin-top: 8px;
+  display: flex;
+  width: 348px;
+  height: 48px;
+  padding: 12px 14px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--dark-dark-900, #0d1d25);
+  color: #fff;
+  border: none;
+}
+.food-explorer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+img {
+  width: 49.428px;
+  height: 47.501px;
+}
+
+.botao {
+  display: flex;
+  padding: 12px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  margin-top: 32px;
+
+  border-radius: 5px;
+  background: var(--tints-tomato-100, #750310);
+  border: none;
+  color: #fff;
+}
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 100%;
+  text-align: center;
+}
+h3 {
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--light-light-100, #fff);
+}
