@@ -2,22 +2,23 @@ import React from "react";
 import { useState } from "react";
 import "./usuario.css";
 import poligono from "../icons/poligono.svg";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 function Usuario() {
+  const [passowordVisible, setPassowordVisible] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [errors, setErrors] = useState({});
 
-  function firstName () {
+  function firstName() {
     if (!name) {
-      setErrors ({...errors, ...{'titular':'por favor, inserir o nome'}})
+      setErrors({ ...errors, ...{ titular: "por favor, inserir o nome" } });
     }
-  };
-  function click () {
-    setErrors ("")
   }
-  
+  function click() {
+    setErrors("");
+  }
 
   return (
     <div className="home-screen">
@@ -59,22 +60,33 @@ function Usuario() {
             </div>
             <div>
               <label htmlFor="senha">Senha</label>
-              <input
-                className="input"
-                type="password"
-                placeholder="No mínimo 6 caracteres"
-                id="email"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                onBlur={(e) => validateSenha()}
-                //onKeyDown={click}
-                maxLength={15}
-                minLength={6}
-              />
+              <div className="password-group">
+                <input
+                  className="input"
+                  type={passowordVisible ? "text" : "password"}
+                  placeholder="No mínimo 6 caracteres"
+                  id="email"
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                  onBlur={(e) => validateSenha()}
+                  //onKeyDown={click}
+                  maxLength={15}
+                  minLength={6}
+                />
+                {passowordVisible ? (
+                  <button onClick={() => setPassowordVisible(false)}>
+                    <AiOutlineEye />
+                  </button>
+                ) : (
+                  <button onClick={() => setPassowordVisible(true)}>
+                    <AiOutlineEyeInvisible />
+                  </button>
+                )}
+              </div>
             </div>
             <button className="botao">Criar conta</button>
             <footer>
-              <h3> Já tenho uma conta</h3>
+              <h3>Já tenho uma conta</h3>
             </footer>
           </div>
         </aside>

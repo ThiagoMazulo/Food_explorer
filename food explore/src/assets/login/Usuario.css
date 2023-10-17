@@ -76,6 +76,35 @@ img {
   background: var(--tints-tomato-100, #750310);
   border: none;
   color: #fff;
+  cursor: pointer;
+}
+
+.password-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+} 
+.password-group input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  width: calc(348px - 40px);
+  border: none;
+  
+}
+
+.password-group button {
+  width: 40px;
+  height: 48px;
+  padding: 12px;
+  margin-top: 8px;
+  background: #0D1D25;
+  border: none;
+  border-radius: 0;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  color: #fff;
+  
 }
 footer {
   display: flex;
@@ -84,6 +113,7 @@ footer {
   
   width: 100%;
   text-align: center;
+  cursor: pointer;
 }
 h3 {
     font-family: Poppins;
@@ -91,5 +121,5 @@ h3 {
     font-style: normal;
     font-weight: 500;
     line-height: 24px;
-    color: var(--light-light-100, #fff);
+    color:  #fff;
 }
