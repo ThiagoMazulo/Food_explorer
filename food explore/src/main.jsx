@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Usuario from './assets/login/Usuario.jsx'
-import Login from './assets/login/Login.jsx'
+import SingIn from './assets/login/SingIn.jsx'
 import ErrorPage from './ErrorPage.jsx'
+import Usuario from './assets/login/Usuario.jsx'
+import Admin from './components/admin/admin.jsx'
 
 const router = createBrowserRouter([
     {
@@ -12,14 +13,18 @@ const router = createBrowserRouter([
       element:<App/>,
       errorElement: <ErrorPage/>,
       children: [
-        // {
-        //   path:"/usuario",
-        //   element:<Usuario/>,
-        // },
-        // {
-        //   path:"/login",
-        //   element:<Login/>,
-        // },
+        {
+          path:"/usuario",
+          element:<Usuario/>,
+        },
+        {
+          path:"/singIn",
+          element:<SingIn/>,
+        },
+        {
+          path:"/admin",
+          element:<Admin/>,
+        },
 
       ]
     },
@@ -28,6 +33,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )

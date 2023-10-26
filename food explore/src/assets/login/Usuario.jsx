@@ -1,96 +1,140 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import "./usuario.css";
 import poligono from "../icons/poligono.svg";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import DotLoader from "react-spinners/DotLoader";
 
 function Usuario() {
-  const [passowordVisible, setPassowordVisible] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  function firstName() {
-    if (!name) {
-      setErrors({ ...errors, ...{ titular: "por favor, inserir o nome" } });
-    }
-  }
-  function click() {
-    setErrors("");
-  }
+  const schema = yup.object({
+    name: yup.string().required("Campo obrigatório!"),
+    email: yup
+      .string()
+      .required("Campo obrigatório!")
+      .email("E-mail inválido!"),
+    password: yup
+      .string()
+      .required("Campo obrigatório!")
+      .min(6, "Minimo 6 caracteres"),
+  });
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const save = (data) => {
+    console.log(data);
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    console.log({ errors });
+  }, [errors]);
 
   return (
     <div className="home-screen">
-      <div className="home-conteiner">
-        <section className="food-explorer">
-          <img src={poligono} alt="poligono" />
-          <h1>food expolorer</h1>
-        </section>
-        <aside className="criar-conta">
-          <h1> Crie sua conta</h1>
-          <div className="forms">
-            <div>
-              <label htmlFor="code">Seu nome</label>
-              <input
-                className="input"
-                type="text"
-                placeholder="Seu nome"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                onBlur={(e) => validateName()}
-                onKeyDown={click}
-                maxLength={30}
-              />
-            </div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input
-                className="input"
-                type="text"
-                placeholder="Exemplo: exemplo@exemplo.com.br"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onBlur={(e) => validateEmail()}
-                onKeyDown={click}
-                maxLength={25}
-              />
-            </div>
-            <div>
-              <label htmlFor="senha">Senha</label>
-              <div className="password-group">
+      {loading ? (
+        <DotLoader color={"#750310"} loading={loading} size={90} />
+      ) : (
+        <div className="home-conteiner">
+          <section className="food-explorer">
+            <img src={poligono} alt="poligono" />
+            <h1>food expolorer</h1>
+          </section>
+          <aside className="criar-conta">
+            <h1> Crie sua conta</h1>
+            <form onSubmit={handleSubmit(save)} className="forms">
+              <div>
+                <label htmlFor="name">Seu nome</label>
                 <input
                   className="input"
-                  type={passowordVisible ? "text" : "password"}
-                  placeholder="No mínimo 6 caracteres"
-                  id="email"
-                  value={senha}
-                  onChange={(e) => setSenha(e.target.value)}
-                  onBlur={(e) => validateSenha()}
-                  //onKeyDown={click}
-                  maxLength={15}
-                  minLength={6}
+                  type="text"
+                  placeholder="Seu nome"
+                  {...register("name")}
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  maxLength={30}
                 />
-                {passowordVisible ? (
-                  <button onClick={() => setPassowordVisible(false)}>
-                    <AiOutlineEye />
-                  </button>
-                ) : (
-                  <button onClick={() => setPassowordVisible(true)}>
-                    <AiOutlineEyeInvisible />
-                  </button>
+                {errors && errors?.name && (
+                  <p style={{ color: "red" }}>{errors?.name?.message}</p>
                 )}
               </div>
-            </div>
-            <button className="botao">Criar conta</button>
-            <footer>
-              <h3>Já tenho uma conta</h3>
-            </footer>
-          </div>
-        </aside>
-      </div>
+              <div>
+                <label htmlFor="email">Email</label>
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="Exemplo: exemplo@exemplo.com.br"
+                  {...register("email")}
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  maxLength={25}
+                />
+                {errors?.email && (
+                  <p style={{ color: "red" }}>{errors?.email?.message}</p>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="senha">Senha</label>
+                <div className="password-group">
+                  <input
+                    className="input"
+                    type={passwordVisible ? "text" : "password"}
+                    id="senha"
+                    value={senha}
+                    placeholder="No mínimo 6 caracteres"
+                    {...register("password")}
+                    onChange={(e) => setSenha(e.target.value)}
+                  />
+                  {passwordVisible ? (
+                    <button onClick={() => setPasswordVisible(false)}>
+                      <AiOutlineEye />
+                    </button>
+                  ) : (
+                    <button onClick={() => setPasswordVisible(true)}>
+                      <AiOutlineEyeInvisible />
+                    </button>
+                  )}
+                </div>
+                {errors?.password && (
+                  <p style={{ color: "red" }}>{errors?.password?.message}</p>
+                )}
+              </div>
+
+              <button type="submit" className="botao">
+                <Link className="h3" to="/singIn">
+                  Criar conta
+                </Link>
+              </button>
+              <footer>
+                <Link className="h3" to="/singIn">
+                  Já tenho uma conta
+                </Link>
+              </footer>
+            </form>
+          </aside>
+        </div>
+      )}
     </div>
   );
 }

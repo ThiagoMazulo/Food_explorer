@@ -1,0 +1,92 @@
+.background {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000a0f;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 1368px;
+  padding: 24px 123px;
+  gap: 32px;
+  color: #fff;
+  background-color: #00111a;
+}
+.food-explorer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.food-explorer h3 {
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: #fff;
+}
+.food-explorer h5 {
+  width: 34px;
+  height: 20px;
+  margin-left: 108px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  color: #82F3FF;
+}
+.seach {
+  display: flex;
+  height: 48px;
+  width: 533px;
+  max-width: 80%;
+  padding: 12px 14px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #0d1d25;
+}
+ h3 {
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  color: #ffffff;
+}
+.novo-prato {
+  display: flex;
+  width: 216px;
+  padding: 14px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+  background-color: #750310;
+  border: none;
+}
+.novo-prato h3 {
+    color: #fff;
+}
+.Pedidos h3 {
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  color: #fff;
+}
+.sing-out {
+  background-color: #00111a;
+  border: none;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav img {
+  width: 632px;
+  height: 406px;
+}
